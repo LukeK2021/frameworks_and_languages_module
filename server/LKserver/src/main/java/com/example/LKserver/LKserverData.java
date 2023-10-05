@@ -1,19 +1,22 @@
 package com.example.LKserver;
 
-import java.util.LinkedList;
+
 
 public class LKserverData {
 
-    public LKserverData()
-    {
-        
+    public LKserverData(){ // empty constructor 
+
     }
-    
-    public String id;
-    public String username;
-    public String lat;
-    public String longtitude;
-    public LinkedList<String> keywords;
+
+
+
+    public LKserverData(String id, String userName){
+        this.id=id;
+        this.userName=userName;
+    }
+    private String id;
+
+    private String userName;
 
     public String getId() {
         return this.id;
@@ -23,38 +26,14 @@ public class LKserverData {
         this.id = id;
     }
 
-    public String getUsername() {
-        return this.username;
+    public String getUserName() {
+        return this.userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getLat() {
-        return this.lat;
-    }
-
-    public void setLat(String lat) {
-        this.lat = lat;
-    }
-
-    public String getLongtitude() {
-        return this.longtitude;
-    }
-
-    public void setLongtitude(String longtitude) {
-        this.longtitude = longtitude;
-    }
-
-    public LinkedList<String> getKeywords() {
-        return this.keywords;
-    }
-
-    public void setKeywords(LinkedList<String> keywords) {
-        this.keywords = keywords;
-    }
-
-
+//other fields
 
 }
