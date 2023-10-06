@@ -1,7 +1,8 @@
 package com.example.LKserver;
 
+import jakarta.validation.constraints.NotEmpty;
 
-
+//data structure
 public class LKserverData {
 
     public LKserverData(){ // empty constructor 
@@ -16,6 +17,7 @@ public class LKserverData {
     }
     private String id;
 
+    @NotEmpty
     private String userName;
 
     public String getId() {
