@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotEmpty;
 
 
 
@@ -24,7 +23,7 @@ import jakarta.validation.constraints.NotEmpty;
                 //Annotation reference -> https://www.javatpoint.com/spring-boot-annotations .
 public class LKserverController {
     private Map<String, LKserverData> data = new HashMap<>() {{
-        put("1", new LKserverData("1", "Luke")); //placeholder list with data for testing purposes.
+        put("1", new LKserverData("1", "Luke","20","20","abc","123", )); //placeholder list with data for testing purposes.
     }};
 
     @GetMapping("/")   //this annotation is to enable a http get request at localhost:8000
