@@ -7,99 +7,74 @@ import jakarta.validation.constraints.NotEmpty;
 //data structure
 public class LKserverData {
 
-    public LKserverData(){ // empty constructor 
 
-    }
-
-
-    //constructor for json object.
-    public LKserverData(String id, String userName, String lat, String longtitude, String url, String desc, String keyword, String dateTime){
-        this.id=id;
-        this.userName=userName;
-        this.lat=lat;
-        this.longtitude=longtitude;
-        this.url=url;
-        this.desc=desc;
-        this.keyword=keyword;
-        this.dateTime=dateTime;
-    }
-    private String id;
+    public String user_id;
 
     @NotEmpty
-    private String userName;
+    public String[] keywords;
 
-    private String lat;
-    private String longtitude;
-    private String url;
-    private String desc;
-    private String keyword;
-    private String dateTime;
+    @NotEmpty
+    public String description;
+    
+    @NotEmpty
+    public long lat;
 
-    public String getKeyword() {
-        return this.keyword;
+    @NotEmpty
+    public long lon;
+
+    
+    public String getUser_id() {
+        return this.user_id;
     }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
+    
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
-    public String getDateTime() {
-        return this.dateTime;
+    public String[] getKeywords() {
+        return this.keywords;
     }
 
-    //set datetime of datetime object to current date item in iso format
-    public void setDateTime(String dateTime) {
-        this.dateTime = Instant.now().toString();
+    public void setKeywords(String[] keywords) {
+        this.keywords = keywords;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
     
-    public String getLat() {
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public long getLat() {
         return this.lat;
     }
 
-    public void setLat(String lat) {
+    public void setLat(long lat) {
         this.lat = lat;
     }
 
-    public String getLongtitude() {
-        return this.longtitude;
+    public long getLon() {
+        return this.lon;
     }
 
-    public void setLongtitude(String longtitude) {
-        this.longtitude = longtitude;
+    public void setLon(long lon) {
+        this.lon = lon;
     }
 
-    public String getUrl() {
-        return this.url;
+    
+    
+
+    public LKserverData(String user_id, String[] keywords, String description, long lat, long lon){
+        this.user_id=user_id;
+        this.keywords=keywords;
+        this.description=description;
+        this.lat=lat;
+        this.lon=lon;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getDesc() {
-        return this.desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getUserName() {
-        return this.userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
 //other fields
 
