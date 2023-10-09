@@ -11,14 +11,14 @@ public class LKserverData {
 
 
 
-    public LKserverData(String id, String userName, String lat, String longtitude, String url, String desc, String[] keyword){
+    public LKserverData(String id, String userName, String lat, String longtitude, String url, String desc, String keyword){
         this.id=id;
         this.userName=userName;
         this.lat=lat;
         this.longtitude=longtitude;
         this.url=url;
         this.desc=desc;
-        this.keyword=keyword;
+        this.keywords=keywords;
     }
     private String id;
 
@@ -29,15 +29,13 @@ public class LKserverData {
     private String longtitude;
     private String url;
     private String desc;
-    private String[] keyword;
+    private String keywords;
 
-    public String[] getKeyword() {
-        return this.keyword;
+    public String getKeyword() {
+        return this.keywords;
     }
 
-    public void setKeyword(String[] keyword) {
-        this.keyword = keyword;
-    }
+    
 
     public String getLat() {
         return this.lat;

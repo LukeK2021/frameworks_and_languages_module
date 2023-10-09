@@ -23,7 +23,7 @@ import jakarta.validation.Valid;
                 //Annotation reference -> https://www.javatpoint.com/spring-boot-annotations .
 public class LKserverController {
     private Map<String, LKserverData> data = new HashMap<>() {{
-        put("1", new LKserverData("1", "Luke","20","20","abc","123", )); //placeholder list with data for testing purposes.
+        put("1", new LKserverData("1", "Luke","20","20","abc","123","key" )); //placeholder list with data for testing purposes.
     }};
 
     @GetMapping("/")   //this annotation is to enable a http get request at localhost:8000
