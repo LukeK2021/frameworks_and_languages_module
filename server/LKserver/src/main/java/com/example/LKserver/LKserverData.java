@@ -5,19 +5,23 @@ import jakarta.validation.constraints.NotEmpty;
 //data structure
 public class LKserverData {
 
+    public String internal_id;
 
+    
+
+    @NotEmpty
     public String user_id;
 
-    @NotEmpty
+    
     public String[] keywords;
 
-    @NotEmpty
+    
     public String description;
     
-    @NotEmpty
+    
     public long lat;
 
-    @NotEmpty
+    
     public long lon;
 
     
@@ -62,7 +66,13 @@ public class LKserverData {
         this.lon = lon;
     }
 
-    
+    public String getInternal_id() {
+        return this.internal_id;
+    }
+
+    public void setInternal_id(String internal_id) {
+        this.internal_id = internal_id;
+    }
     
 
     public LKserverData(String user_id, String[] keywords, String description, long lat, long lon){

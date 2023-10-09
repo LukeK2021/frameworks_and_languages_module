@@ -18,9 +18,11 @@ import jakarta.validation.Valid;
 
 
 
-@RestController //@RestController: It can be considered as a combination of @Controller and @ResponseBody annotations. The @RestController annotation is itself annotated with the @ResponseBody annotation. It eliminates the need for annotating each method with @ResponseBody.
-                //@Controller: The @Controller is a class-level annotation. It is a specialization of @Component. It marks a class as a web request handler. It is often used to serve web pages. By default, it returns a string that indicates which route to redirect. It is mostly used with @RequestMapping annotation.
-                //Annotation reference -> https://www.javatpoint.com/spring-boot-annotations .
+//@RestController: It can be considered as a combination of @Controller and @ResponseBody annotations. The @RestController annotation is itself annotated with the @ResponseBody annotation. It eliminates the need for annotating each method with @ResponseBody.
+//@Controller: The @Controller is a class-level annotation. It is a specialization of @Component. It marks a class as a web request handler. It is often used to serve web pages. By default, it returns a string that indicates which route to redirect. It is mostly used with @RequestMapping annotation.
+//Annotation reference -> https://www.javatpoint.com/spring-boot-annotations .
+
+@RestController 
 public class LKserverController {
     
     private Map<String, LKserverData> data = new HashMap<>() {{
@@ -54,10 +56,9 @@ public class LKserverController {
 
     @PostMapping("/item")
     public LKserverData create(@RequestBody @Valid LKserverData lKserverData ){
-        lKserverData.setUser_id(UUID.randomUUID().toString());
-        data.put(lKserverData.getUser_id(), lKserverData);
+        lKserverData.setInternal_id(UUID.randomUUID().toString());
+        data.put(lKserverData.getUser_id(),lKserverData);
         return lKserverData;
-     
     }
     
 
