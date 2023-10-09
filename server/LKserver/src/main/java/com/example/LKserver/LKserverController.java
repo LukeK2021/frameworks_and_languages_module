@@ -56,7 +56,7 @@ public class LKserverController {
 
     @PostMapping("/item")
     public LKserverData create(@RequestBody @Valid LKserverData lKserverData ){
-        lKserverData.setInternal_id(UUID.randomUUID().toString());
+        lKserverData.setInternal_id(UUID.randomUUID().toString()); //adds a uuid to the internal id field contained in the data object.
         data.put(lKserverData.getUser_id(),lKserverData);
         return lKserverData;
     }
