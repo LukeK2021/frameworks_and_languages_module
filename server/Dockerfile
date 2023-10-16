@@ -1,3 +1,4 @@
+# docker src -> https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
 FROM node:18-alpine AS base
 
 # Install dependencies only when needed
