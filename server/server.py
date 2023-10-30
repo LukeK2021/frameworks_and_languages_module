@@ -37,13 +37,14 @@ def new_item():
     return post, 201
 
 #delete an item using id param
-@app.route('/item/<int:userId>',methods=['DELETE'])
-def remove()
-for user in items:
-        if user['id']==userId:
+@app.route('/item/<int:Id>',methods=['DELETE'])
+def remove():
+    for user in items:
+        if user['id']==Id:
             items.remove(user)
             return{"data":"deleted"}, 204
-    return {'error':'not found'}, 404
+        return {'error':'not found'}, 404
+
 
 
 
