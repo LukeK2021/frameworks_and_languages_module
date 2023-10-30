@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 import datetime
 
 app = Flask(__name__)
-
+CORS(app) #implementing cors functionality sitewide https://flask-cors.corydolphin.com/en/latest/index.html
 #sample data
 items = [
     {"id": 1 ,"user_id": "user1234", "keywords": ["hammer", "nails", "tools"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275,"date_from": datetime.datetime.now().isoformat()},
@@ -11,7 +11,7 @@ items = [
 ]
 
 #get home page
-@app.route('/',methods=['GET'])
+@app.route('/',methods=['GET'])#specifying the url route and the http method to perform operations.
 def home():
     return "Home"
 
@@ -43,7 +43,7 @@ def remove():
         if user['id']==Id:
             items.remove(user)
             return{"data":"deleted"}, 204
-        return {'error':'not found'}, 404
+        return {'error':'not found'}, 500
 
 
 
