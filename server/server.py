@@ -1,9 +1,9 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-import datetime
+from datetime import datetime
 
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 items = [ #sample data
@@ -15,14 +15,14 @@ items = [ #sample data
 #get home page
 @app.route('/',methods=['GET'])#specifying the url route and the http method to perform operations.
 def home():
-    return "Home"
+    return "Home", 200
 
 #get all users
 @app.route('/items',methods=['GET'])
 def getusers():
     return items, 200
 
-#takes integer parameter to filter users data by their id
+#takes integer parameter to filter users data by their id as a path parameter https://flask.palletsprojects.com/en/3.0.x/api/#flask.Flask.route
 @app.route('/item/<int:userId>',methods=['GET'])
 def get_id(userId):
     for user in items:
@@ -44,8 +44,8 @@ def remove():
     for user in items:
         if user['id']==Id:
             items.remove(user)
-            return{"data":"deleted"}, 204
-        return {'error':'not found'}, 500
+            return{"data":"deleted"}, 200
+        return {'error':'not found'}, 404
 
 
 
