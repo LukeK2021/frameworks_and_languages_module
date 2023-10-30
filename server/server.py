@@ -1,10 +1,12 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import datetime
 
 app = Flask(__name__)
-CORS(app) #implementing cors functionality sitewide https://flask-cors.corydolphin.com/en/latest/index.html
-#sample data
-items = [
+CORS(app)
+
+
+items = [ #sample data
     {"id": 1 ,"user_id": "user1234", "keywords": ["hammer", "nails", "tools"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275,"date_from": datetime.datetime.now().isoformat()},
     {"id": 2 ,"user_id": "user123", "keywords": ["hammer", "nails", "tools"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275,"date_from": datetime.datetime.now().isoformat()},
     {"id": 3 ,"user_id": "user12", "keywords": ["hammer", "nails", "tools"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275,"date_from": datetime.datetime.now().isoformat()}
@@ -50,4 +52,4 @@ def remove():
 
 #entrypoint for flask application
 if __name__ == '__main__':
-    app.run(debug=True, port=8000,host='0.0.0.0')
+    app.run(port=8000, host='0.0.0.0', debug=True )
