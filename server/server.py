@@ -4,9 +4,7 @@ from datetime import datetime
 import uuid
 
 app = Flask(__name__)
-CORS(app, origins="http://localhost:8000",
-      allow_headers=["Content-Type", "Authorization", "Access-Control-Allow-Credentials"],
-      supports_credentials=True)
+CORS(app)
 
 
 items = [ #sample data
