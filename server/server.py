@@ -43,7 +43,7 @@ def get_id(Id):
             if user['id'] == Id:
                 return jsonify(user), 200
         return jsonify({'error': 'not found'}), 404
-    if request.method == 'DELETE':
+    if request.method == 'DELETE': #accessing the delete method
         for user in items:
             if user['id']==Id:
                 items.remove(user)
@@ -71,11 +71,11 @@ def remove(Id):
             return jsonify(user), 200
         return jsonify({'error':'not found'}), 404
 
-@app.route('/item/<string:keyword>',methods=['GET'])
+@app.route('/item/<string:keyword>',methods=['GET']) #method to filter json objects by keywords that exist within the obj
 def get_items_by_keyword(keyword):
     if not keyword:
         return jsonify({'error': 'Keyword parameter is required'}), 400
-    filtered_items = [item for item in items if keyword.lower() in [kw.lower() for kw in item['keywords']]]
+    filtered_items = [item for item in items if keyword.lower() in [kw.lower() for kw in item['keywords']]] #List comprehension to iterate over keywords array in our data struct with intent to find matches
     return jsonify(filtered_items)
 
 
