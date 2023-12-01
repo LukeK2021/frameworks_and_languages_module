@@ -1,23 +1,15 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from datetime import datetime
-import uuid
 
 app = Flask(__name__)
 CORS(app)
-
 
 items = [ #sample data
     {"id": 1 ,"user_id": "user1234", "keywords": ["hammer", "nails", "tools"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275,"date_from": datetime.now().isoformat()},
     {"id": 2 ,"user_id": "user123", "keywords": ["drill", "saw", "sander"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275,"date_from": datetime.now().isoformat()},
     {"id": 3 ,"user_id": "user12", "keywords": ["screwdriver", "tea", "welding iron"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275,"date_from": datetime.now().isoformat()}
 ]
-base_url = 'http://localhost:8000'
-
-
-deleted_items = set() # set of deleted items
-
-
 @app.route('/items/', methods=['OPTIONS'])
 def options():
     return '', 200
@@ -79,4 +71,4 @@ def get_items_by_keyword(keyword):
 
 #entrypoint for flask application
 if __name__ == '__main__':
-    app.run(port=8000, host='0.0.0.0', debug=True )
+    app.run(port=8000,host='0.0.0.0', debug=True )
