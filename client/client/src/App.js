@@ -7,14 +7,13 @@ function App() {
   const [data, setData] = useState([])
 
   useEffect(() =>{ //Function returns a promise https://www.w3schools.com/js/js_promise.asp
-    fetch('http://localhost:8000/items',{
+    fetch('http://127.0.0.1:8000/items',{
       'method': 'GET',
       headers:{
         'Content-Type':'application/json'
       }
     })
-    .then(resp => resp.json)
-    .then(resp => console.log(resp))
+    .then(resp => resp.json())
     .catch(error => console.log(error))
   },[])
 
