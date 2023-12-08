@@ -1,16 +1,16 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from datetime import datetime
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 items = [ #sample data
-    {"id": 1 ,"user_id": "user1234", "keywords": ["hammer", "nails", "tools"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275, "image":"placeholder_text","date_from": datetime.now().isoformat()},
-    {"id": 2 ,"user_id": "user123", "keywords": ["drill", "saw", "sander"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275, "image":"placeholder_text","date_from": datetime.now().isoformat()},
-    {"id": 3 ,"user_id": "user12", "keywords": ["screwdriver", "tea", "welding iron"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275,"image":"placeholder_text","date_from": datetime.now().isoformat()}
+    {"id": 1 ,"user_id": "user1234", "keywords": ["hammer", "nails", "tools"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275, "date_from": datetime.now().isoformat()},
+    {"id": 2 ,"user_id": "user123", "keywords": ["drill", "saw", "sander"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275, "date_from": datetime.now().isoformat()},
+    {"id": 3 ,"user_id": "user12", "keywords": ["screwdriver", "tea", "welding iron"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275, "date_from": datetime.now().isoformat()}
 ]
-@app.route('/items/', methods=['OPTIONS'])
+@app.route('/items', methods=['OPTIONS'])
 def options():
     return '', 200
 
@@ -47,20 +47,10 @@ def new_item():
     if "user_id" not in inputData:
         return jsonify({"error": "Missing 'id' field"}), 405
     else:
-        post = {"id": len(items)+1 , 'user_id':request.json['user_id'],'keywords':request.json['keywords'], 'description':request.json['description'], 'lat':request.json['lat'], 'lon':request.json['lon'],'image':request.json['image'], "date_time": datetime.now().isoformat(),"date_from": datetime.now().isoformat()}
+        post = {"id": len(items)+1 , 'user_id':request.json['user_id'],'keywords':request.json['keywords'], 'description':request.json['description'], 'lat':request.json['lat'], 'lon':request.json['lon'], 'date_time': datetime.now().isoformat(),"date_from": datetime.now().isoformat()}
         items.append(post)
         return jsonify(post), 201
     
-
-#delete an item using id param
-@app.route('/item/<int:Id>',methods=['DELETE'])
-def remove(Id):
-    for user in items:
-        if user['id']==Id:
-            items.remove(user)
-            return jsonify(user), 200
-        return jsonify({'error':'not found'}), 404
-
 @app.route('/item/<string:keyword>',methods=['GET']) #method to filter json objects by keywords that exist within the obj
 def get_items_by_keyword(keyword):
     if not keyword:
