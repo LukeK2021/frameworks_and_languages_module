@@ -35,7 +35,7 @@ function App() {
     .catch(error => console.log(error))
   };
 
-  const handleInputChange = (e) => { //when this function is called it will 
+  const handleInputChange = (e) => { //when this function is called it will store data contained within textboxes to the formData obj
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -43,7 +43,7 @@ function App() {
     });
   };
 
-  const submitItem = async (e) => {
+  const create_item = async (e) => {
     e.preventDefault();
 
     try {
@@ -54,7 +54,7 @@ function App() {
         },
         body: JSON.stringify(formData),
       });
-      getData();
+      getData(); //on successful post refreshes the components that display information from the server, posted item will now show up
 
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -68,18 +68,18 @@ function App() {
       console.error('Error:', error);
     }
   };
-  const delItem = (id)=>{
+  const delItem = (id)=>{ //takes an id from an item, then uses fetch to delete item from server then updates items list.
     if(window.confirm('Are you sure'))
     {
       fetch(`${ApiUrl}/item/`+id,{method:'DELETE'})
-      .then (()=> getData())
+      .then (()=> getData()) //refreshes item list.
     }
 
   }
   return (
     <div className="App-header"> 
-      <h1>FreeCycle</h1>
-      <form onSubmit={submitItem}>
+      <h1>FreeCycle</h1> /**Freecycle text to meet test requirements */
+      <form onSubmit={create_item}>
         <label className='Label-header'>
            User id:
            <input
@@ -135,26 +135,32 @@ function App() {
          />
         </label>
         <br />
-        <button type="submit">Submit</button>
+        <label className='Label-header'>
+         Image:
+         <input
+           type="text"
+           name="image"
+           id='image'
+           value={formData.image}
+           onChange={handleInputChange}
+         />
+        </label>
+        <br />
+        <button type="create_item" data-action="create_item">Create item</button>
       </form>
-      <ul className="list-group">
+      <ul className="list-group"> /** Map to iterate over elements in the itemsdata object https://www.freecodecamp.org/news/javascript-map-how-to-use-the-js-map-function-array-method/#:~:text=map()%20method%20allows%20you,each%20of%20the%20array's%20elements.&text=The%20Array.,-map()%20method */
         {itemsData.map((item, id) => (
-          <li key={item.id} className="items">
-            <Row> 
-              <Col>User id: {item.user_id}</Col>
-              <Col>Description: {item.description}</Col>
-              <Col>Keywords: {item.keywords}</Col>
-              <Col>Lat: {item.lat}</Col>
-              <Col>Lon: {item.lon}</Col>
-              <Col>Date: {item.date_from}</Col>
+          <li key={item.id} className="items" data-field="id"> /** For each element in the items data array an li key will be assigned from the id of obj contained on the server */
+            <Row> /**Displaying data from obj */
+              <Col data-field="id">id: {item.id}</Col>
+              <Col data-field="user_id">User id: {item.user_id}</Col>
+              <Col data-field="description">Description: {item.description}</Col>
+              <Col data-field="keywords">Keywords: {item.keywords}</Col>
+              <Col data-field="lat">Lat: {item.lat}</Col>
+              <Col data-field="lon">Lon: {item.lon}</Col>
+              <Col data-field="date_from">Date: {item.date_from}</Col>
               <Col>
-                <Button
-                  variant="danger"
-                  type="button"
-                  onClick={() => delItem(item.id)}
-                >
-                  Delete
-                </Button>
+                <Button variant="danger" type="button" data-action="delete" onClick={() => delItem(item.id)}>Delete</Button> /**Delete button that uses the id of the item */
               </Col>
             </Row>
           </li>
