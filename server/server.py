@@ -6,9 +6,9 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 items = [ #sample data
-    {"id": 1 ,"user_id": "user1234", "keywords": ["hammer", "nails", "tools"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275,"date_from": datetime.now().isoformat()},
-    {"id": 2 ,"user_id": "user123", "keywords": ["drill", "saw", "sander"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275,"date_from": datetime.now().isoformat()},
-    {"id": 3 ,"user_id": "user12", "keywords": ["screwdriver", "tea", "welding iron"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275,"date_from": datetime.now().isoformat()}
+    {"id": 1 ,"user_id": "user1234", "keywords": ["hammer", "nails", "tools"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275, "image":"placeholder_text","date_from": datetime.now().isoformat()},
+    {"id": 2 ,"user_id": "user123", "keywords": ["drill", "saw", "sander"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275, "image":"placeholder_text","date_from": datetime.now().isoformat()},
+    {"id": 3 ,"user_id": "user12", "keywords": ["screwdriver", "tea", "welding iron"], "description": "A hammer and nails set. In canterbury", "lat": 51.2798438, "lon": 1.0830275,"image":"placeholder_text","date_from": datetime.now().isoformat()}
 ]
 @app.route('/items/', methods=['OPTIONS'])
 def options():
@@ -47,7 +47,7 @@ def new_item():
     if "user_id" not in inputData:
         return jsonify({"error": "Missing 'id' field"}), 405
     else:
-        post = {"id": len(items)+1 , 'user_id':request.json['user_id'],'keywords':request.json['keywords'], 'description':request.json['description'], 'lat':request.json['lat'], 'lon':request.json['lon'], "date_time": datetime.now().isoformat(),"date_from": datetime.now().isoformat()}
+        post = {"id": len(items)+1 , 'user_id':request.json['user_id'],'keywords':request.json['keywords'], 'description':request.json['description'], 'lat':request.json['lat'], 'lon':request.json['lon'],'image':request.json['image'], "date_time": datetime.now().isoformat(),"date_from": datetime.now().isoformat()}
         items.append(post)
         return jsonify(post), 201
     
