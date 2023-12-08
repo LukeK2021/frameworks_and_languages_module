@@ -18,12 +18,19 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: top-left;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
+.Label-header{
+  background-color: #282c34;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+}
 .App-link {
   color: #61dafb;
 }
