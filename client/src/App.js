@@ -148,10 +148,10 @@ function App() {
         <br />
         <button type="create_item" data-action="create_item">Create item</button>
       </form>
-      <ul className="list-group"> // Map to iterate over elements in the itemsdata object https://www.freecodecamp.org/news/javascript-map-how-to-use-the-js-map-function-array-method/#:~:text=map()%20method%20allows%20you,each%20of%20the%20array's%20elements.&text=The%20Array.,-map()%20method
+      <ul className="list-group"> 
         {itemsData.map((item, id) => (
-          <li key={item.id} className="items" data-field="id"> // For each element in the items data array an li key will be assigned from the id of obj contained on the server
-            <Row> //Displaying data from obj
+          <li key={item.id} className="items" data-field="id"> 
+            <Row> 
               <Col data-field="id">id: {item.id}</Col>
               <Col data-field="user_id">User id: {item.user_id}</Col>
               <Col data-field="description">Description: {item.description}</Col>
@@ -160,7 +160,7 @@ function App() {
               <Col data-field="lon">Lon: {item.lon}</Col>
               <Col data-field="date_from">Date: {item.date_from}</Col>
               <Col>
-                <Button variant="danger" type="button" data-action="delete" onClick={() => delItem(item.id)}>Delete</Button> //Delete button that uses the id of the item
+                <Button variant="danger" type="button" data-action="delete" onClick={() => delItem(item.id)}>Delete</Button> 
               </Col>
             </Row>
           </li>
