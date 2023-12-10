@@ -1,6 +1,6 @@
 import './App.css';
 import {useState, useEffect} from 'react';
-import {Col ,Button, Row} from 'react-bootstrap';
+import {Col ,Button, Row, Container} from 'react-bootstrap';
 
 function App() {
 //initialising an effect hook to enable this client instance to access the data on the flask server https://react.dev/reference/react/hooks#effect-hooks
@@ -24,15 +24,21 @@ function App() {
   },[])
 
   const getData = () => { //Function returns a promise https://www.w3schools.com/js/js_promise.asp
-    fetch(`${ApiUrl}/items`,{ //template literals substitution of placeholder strings https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
-      'method': 'GET',
-      headers:{
-        'Content-Type':'application/json' //ensuring content json is present for headers.
-      }
+    fetch(`${ApiUrl}/items`, { //template literals substitution of placeholder strings https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+      method: 'GET',
     })
-    .then(resp => resp.json())
-    .then(resp => setitemsData(resp))
-    .catch(error => console.log(error))
+      .then(resp => {
+        if (!resp.ok) {
+          throw new Error('Error with network response');
+        }
+        return resp.json();
+      })
+      .then(data => {  // setting the content of the promise to the items data state we defined earlier.
+        setitemsData(data);
+      })
+      .catch(error => { //error handling
+        console.error('Error:', error);
+      });
   };
 
   const handleInputChange = (e) => { //when this function is called it will store data contained within textboxes to the formData obj
@@ -77,7 +83,6 @@ function App() {
 
   }
   return (
-    
     <div className="App-header"> 
     <head><meta name="viewport" content="width=device-width, initial-scale=1.0"/> </head>
       <h1>FreeCycle</h1> 
