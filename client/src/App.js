@@ -77,9 +77,11 @@ function App() {
 
   }
   return (
+    
     <div className="App-header"> 
-      <h1>FreeCycle</h1> //Freecycle text to meet test requirements 
-      <form onSubmit={create_item}>
+    <head><meta name="viewport" content="width=device-width, initial-scale=1.0"/> </head>
+      <h1>FreeCycle</h1> 
+      <form onSubmit={create_item} className='flex-form'>
         <label className='Label-header'>
            User id:
            <input
@@ -150,7 +152,7 @@ function App() {
       </form>
       <ul className="list-group"> 
         {itemsData.map((item, id) => (
-          <li key={item.id} className="items" data-field="id"> 
+          <li key={item.id} className="Li-header" data-field="id"> 
             <Row> 
               <Col data-field="id">id: {item.id}</Col>
               <Col data-field="user_id">User id: {item.user_id}</Col>
