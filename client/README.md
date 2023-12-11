@@ -1,5 +1,5 @@
-CLIENT
-
+CLIENT MADE WITH REACT.JS
+ 
 How to run this software through Github codespaces:
 =================================================================================================
 1) Navigate to the depository url : https://github.com/LukeK2021/frameworks_and_languages_module

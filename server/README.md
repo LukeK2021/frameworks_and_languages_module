@@ -1,4 +1,4 @@
-SERVER
+SERVER MADE WITH PYTHON FLASK.
 
 How to run this software through Github codespaces:
 =================================================================================================
