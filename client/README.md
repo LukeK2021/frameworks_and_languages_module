@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+CLIENT
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+How to run this software through Github codespaces:
+=================================================================================================
+1) Navigate to the depository url : https://github.com/LukeK2021/frameworks_and_languages_module
+2) Click the green code button, a dropdown menu will appear. From there select the codespaces tab.
+3) Select the small plus symbol.
+4) A new window will appear in the browser, this is a cloud based ide containing files necessary to run the software.
+5) Open a new terminal from the dropdown menu in the top right of the IDE.
+6) In the terminal navigate to the client directory (cmd: "cd client").
+7) Then run type "make build" into the terminal, this will build the container that will contain our client.
+8) Ensure that you can run the server (see root/server/readme.md) and have it running in.
+9) Once "make build" is complete, type "make run" and this will launch the Client on http://localhost:8001
+10) Ensure the server is running (see root/server/readme.md) and navigate to http://localhost:8001/?api=http://localhost:8000/ (if server is not runnig beforehand you may see error messages.)
+11) If the page is populated with data, the client is working correctly and is free to be interacted with.
 
-## Available Scripts
 
-In the project directory, you can run:
+How to run on your local machine:
+=================================================================================================
+System Requirements:
+First ensure that you have the latest version of Node.js, gitbash installed and a text based ide of your choice (I am using Visual Studio code)and docker. Links to these can be found below:
+Node.js: https://nodejs.org/en
+Visual Studio code: https://code.visualstudio.com/download
+Docker: https://www.docker.com/products/docker-desktop/
+Gitbash: https://git-scm.com/download/win
+(Note a system with at least 16gb of ram is reccommended, as the docker windows env is a memory hog.)
 
-### `npm start`
+1) Clone this repository via the green code button, navigating to the local tab and selecting "Download zip", once downloaded extract this folder to an easy to access location (EG Desktop).
+2) Open Visual studio code, in the file dropdown menu and select "open folder" navigating to the folder we created in step one.
+3) Now you should see all the project files.
+4) Open a new terminal from the terminal drop down menu in the upper left of the vs code window, then navigate to the client directory.(cmd: "cd client)
+5) From here in the terminal window run the make build command (cmd: make build), this will the build a container that contains our client within it.
+(Note: To run make commands in visual studio code the "make" extension in the vs code extensions library may be needed depending on the system. In addition the docker program needs to be open in order for the container to be built).
+6) once the container build is complete we can begin hosting the cluent by invoking make run. (cmd:make run) This will begin running the client making it accessable at http://localhost:8001/
+7) Ensure the server is running (see root/server/readme.md) and navigate to http://localhost:8001/?api=http://localhost:8000/
+8) If the page is populated with data, the client is working correctly and is free to be interacted with.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

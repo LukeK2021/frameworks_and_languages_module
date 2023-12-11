@@ -54,8 +54,15 @@ def new_item():
 @app.route('/item/<string:keyword>',methods=['GET']) #method to filter json objects by keywords that exist within the obj
 def get_items_by_keyword(keyword):
     if not keyword:
-        return jsonify({'error': 'Keyword parameter is required'}), 400
-    filtered_items = [item for item in items if keyword.lower() in [kw.lower() for kw in item['keywords']]] #List comprehension to iterate over keywords array in our data struct with intent to find matches
+        return jsonify({'error': 'Keyword is not valid/missing'}), 400
+
+    # Filter items based on the exact keyword
+    filtered_items = []
+    for item in items:
+        lowercase_keywords = [kw.lower() for kw in item['keywords']]
+        if keyword.lower() in lowercase_keywords and keyword.lower() in lowercase_keywords:
+            filtered_items.append(item)
+
     return jsonify(filtered_items)
 
 
