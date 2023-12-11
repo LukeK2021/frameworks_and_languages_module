@@ -82,6 +82,23 @@ function App() {
     }
 
   }
+
+  //NOTE: i could not type comments inline as they would show up when running the client.
+
+
+  //CLIENT HTML COMMENTS.
+
+  //5 labels for each datapoint, user id, desc etc. piping data to handleinput change, where it is stored as a K/V pair.
+  //This datastore is in accordance with server schema to avoid 405 error. value={formData.user_id}.
+  //Some datapoints are ommitted as they are generated at the time of item submission.
+
+  //items data struct on the server is handed by the itemsData var, as such it contains all data contained on the server.
+  //mapping itemsData obj to get values on these key/value pairs.
+  //using bootsrap i was able to encapsulate this within a <ul> tag.
+  //<li> id is directly taken from the id that is present on the server and as such the itemsData map.
+  //Further datapoints are formatted by row utilising the <row> and <col> tags nested within the <li> tags.
+  //result is that for each id present on the server, it presents a single row that displays all datapoints
+  // for each <li> that is present a delete button is present, this invokes the delItem() func. and refreshes data.
   return (
     <div className="App-header"> 
     <head><meta name="viewport" content="width=device-width, initial-scale=1.0"/> </head>
