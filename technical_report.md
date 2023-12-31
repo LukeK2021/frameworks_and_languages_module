@@ -31,7 +31,7 @@ with conn:
 ```
 Firstly if the business needed to expand to different forms of media this may cause issues as the max packet size as highlighed in the snippet is 65 KiloBytes and it will cause the program to fail, however the engineer has anticipated this and has included a hack that will attempt to piece together the rest of the data should it exceed this packet size. Awful for scalability and data integrity.
 
-### A Lack of Data state.
+### A Lack of Data state
 
 
 https://github.com/calaldees/frameworks_and_languages_module/blob/0f55f66639768032a3f0c0d795e6517ca52f0a11/example_client/index.html#L402
@@ -182,51 +182,143 @@ https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
 Client Framework Features
 -------------------------
 
-### (name of Feature 1)
+### Re-useable components
 
-(Technical description of the feature - 40ish words)
-(A code block snippet example demonstrating the feature)
-(Explain the problem-this-is-solving/why/benefits/problems - 40ish words)
-(Provide reference urls to your sources of information about the feature - required)
+React uses components (re-usable ui elements) as its core selling point, components allow users to compartmentalise aspects of their application and create their own reference objects.
+
+```JSX
+return (
+    <div className="App-header"> 
+    <head><meta name="viewport" content="width=device-width, initial-scale=1.0"/> </head>
+      <h1>FreeCycle</h1> 
+      <form onSubmit={create_item} className='flex-form'>
+        <label className='Label-header'>
+           User id:
+           <input
+           type="text"
+           name="user_id"
+           id='user_id'
+           value={formData.user_id}
+           onChange={handleInputChange}
+          />
+        </label>
+);
+```
+Components allow developer man hours to be used elsewhere by cutting down on writing code multiple times througout a project, in additon to the time saved the open source nature of components allows users to draw from a vast library of pre-fabricated components, all contained from the main logic of the program.
+
+https://react.dev/learn/your-first-component
+
+### Boostrap integration.
+
+React bootstrap, a package designed with react in mind to style applications using bootstrap css styling, enabling the use of all the features boostrap provides.
+
+https://github.com/LukeK2021/frameworks_and_languages_module/blob/f807eb2bccb826db2c9d6fc594315c46dc87782b/client/src/App.js#L175
+```JSX
+<ul className="list-group"> 
+        {itemsData.map((item, id) => (
+          <li key={item.id} className="Li-header" data-field="id"> 
+            <Row> 
+              <Col data-field="id">id: {item.id}</Col>
+              <Col data-field="user_id">User id: {item.user_id}</Col>
+              <Col data-field="description">Description: {item.description}</Col>
+              <Col data-field="keywords">Keywords: {item.keywords}</Col>
+              <Col data-field="lat">Lat: {item.lat}</Col>
+              <Col data-field="lon">Lon: {item.lon}</Col>
+              <Col data-field="date_from">Date: {item.date_from}</Col>
+              <Col>
+                <Button variant="danger" type="button" data-action="delete" onClick={() => delItem(item.id)}>Delete</Button> 
+              </Col>
+            </Row>
+          </li>
+        ))}
+      </ul>
+```
+
+Boostrap allows users to style their applications with their expanded css, in the snippet above the rendering of the data has been assigned to a grid system enabling a consistant styling across the application.
+
+By utilising the css classes and additional styling techniques such as dynamically sizing elements based on screen resolution, cuts down on developer time as they have their own custom references to call. Each styling class only has to be written once.
+
+https://react-bootstrap.netlify.app/docs/getting-started/introduction/
 
 
-### (name of Feature 2)
+### One way data binding
 
-(Technical description of the feature - 40ish words)
-(A code block snippet example demonstrating the feature)
-(Explain the problem-this-is-solving/why/benefits/problems - 40ish words)
-(Provide reference urls to your sources of information about the feature - required)
+When data is flowing through the program it does so from top to bottom, meaning parent components pass on to child components only. Children cannot pass data to parent components but there is communication between the two in regards to updating states and components that rely on said states.
 
 
-### (name of Feature 3)
+https://github.com/LukeK2021/frameworks_and_languages_module/blob/f807eb2bccb826db2c9d6fc594315c46dc87782b/client/src/App.js#L7
+```jsx
+const [itemsData, setitemsData] = useState([]) //state to hold data retrieved from server line #7
+  const [formData, setFormData] = useState({ 
+    user_id: 0,
+    keywords: [''],
+    description:'',
+    lat:0.1,
+    lon:0.1,
+  });
+```
 
-(Technical description of the feature - 40ish words)
-(A code block snippet example demonstrating the feature)
-(Explain the problem-this-is-solving/why/benefits/problems - 40ish words)
-(Provide reference urls to your sources of information about the feature - required)
+
+With one way data binding data flows in one direction making it easy to trace a data source for debugging and isolate issues more effectively.
+
+
+https://dev.to/parnikagupta/one-way-data-binding-in-react-30ea
 
 
 Client Language Features
 ------------------------
 
-### (name of Feature 1)
+### State
 
-(Technical description of the feature - 40ish words)
-(A code block snippet example demonstrating the feature)
-(Explain the problem-this-is-solving/why/benefits/problems - 40ish words)
-(Provide reference urls to your sources of information about the feature - required)
+A state refers to the data currently stored in the program in a given moment either in the entire program or individual class, in this use case there are states for sending and recieving data to the server.
 
-### (name of Feature 2)
+https://github.com/LukeK2021/frameworks_and_languages_module/blob/f807eb2bccb826db2c9d6fc594315c46dc87782b/client/src/App.js#L7
 
-(Technical description of the feature - 40ish words)
-(A code block snippet example demonstrating the feature)
-(Explain the problem-this-is-solving/why/benefits/problems - 40ish words)
-(Provide reference urls to your sources of information about the feature - required)
+```Javascript
+//initialising an effect hook to enable this client instance to access the data on the flask server https://react.dev/reference/react/hooks#effect-hooks
+  const [itemsData, setitemsData] = useState([]) //managing inputs and requests with state -> https://react.dev/learn/managing-state
+  const [formData, setFormData] = useState({ // State for handling the data that will be posted to server, note json fields are present to prevent 405.
+    user_id: 0,
+    keywords: [''],
+    description:'',
+    lat:0.1,
+    lon:0.1,
+  });
+```
+
+
+The state gives us a place to store our data completely seperate from any other objects in the program and we can have a nearly limitless amount of functions or render objects that can use it at any time. If a component is using a state, any changes to that state will refresh the component reflecting the changes.
+
+https://www.altcademy.com/blog/what-is-state-in-javascript/#:~:text=In%20JavaScript%2C%20state%20refers%20to,part%20of%20the%20game's%20state
+
+### Dynamic types
+
+Like python javascript does not need a type declaration when initializing a variable, the type is defined by the stored value and interpreted at runtime.
+The snippet below shows a structure designed to handle inputs to the server, note how despite the server data structure containing strings, integers and decimals, these do not need to be declared beforehand
+https://github.com/LukeK2021/frameworks_and_languages_module/blob/f807eb2bccb826db2c9d6fc594315c46dc87782b/client/src/App.js#L44
+```JSX
+const handleInputChange = (e) => { //when this function is called it will store data contained within textboxes to the formData obj
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+```
+
+When writing smaller pieces of code a dynamic type streamlines the process by not having to declare types and some variables can be assigned a different data type, however should a type error occur it will not flag until run time.
+
+https://www.solwey.com/posts/static-vs-dynamic-typing-choosing-the-right-approach-for-your-programming-needs
+https://www.quora.com/What-are-the-advantages-and-disadvantages-of-dynamically-typed-programming-languages#:~:text=Advantages%3A,of%20variables%20before%20using%20them.
 
 
 
 Conclusions
 -----------
 
-(justify why frameworks are recommended - 120ish words)
-(justify which frameworks should be used and why 180ish words)
+Frameworks are neccessary as they enable developers to create applications in a modular format and once blueprints are created they can be re-used as many times as needed, increasing efficiency as developers do not need to re-write code constantly and reduces the cognitive load caused by reading lots of code.
+Another aspect is middleware, middleware is key for web-services as it allows us to pre/post process information coming in and out of the server, but most importantly it is modular, giving developers freedom to add and remove middleware at will without effecting the overall server functionality.
+
+For the server i would reccomed flask as it is a python framework and python is by far the most popular programming language used. Due to this popularity there are lots of resources out there to assist in building a production server and this popularity comes from python being a friendly language to learn and read, however python and flask is not without its issues, python is not a very fast language as its interpreted rather than compiled so if its a fast response that is required i would reccomend a platform written in a C based language.
+
+React for the client provides several benefits again like python it has the largest community amongst front end frameworks, this is due to the modularity it provides with render templates, furthermore it enables developers to isolate data to certain components, reducing memory and processing overheads.
